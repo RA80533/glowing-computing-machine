@@ -25,6 +25,6 @@ jobs:
 
       - uses: docker://alpine:latest
         with:
-          entrypoint: "/bin/sh"
+          entrypoint: "/bin/echo"
           args: "The ${{ github.event_name }} event triggered this step"
 
