@@ -25,7 +25,4 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      - uses: docker://ubuntu:latest
-        with:
-          entrypoint: "/bin/echo"
-          args: "'The ${{ github.event_name }} event triggered this step'"
+      - uses: docker://mcr.microsoft.com/cstsectools/codeql-container:latest
