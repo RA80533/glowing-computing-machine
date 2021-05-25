@@ -23,4 +23,8 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      - uses: docker://hello-world:nanoserver-1809
+      - uses: docker://alpine:latest
+        with:
+          entrypoint: "/bin/sh"
+          args: "The ${{ github.event_name }} event triggered this step"
+
