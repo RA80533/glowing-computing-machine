@@ -25,4 +25,4 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      - run: docker run docker://mcr.microsoft.com/cstsectools/codeql-container:latest
+      - run: docker run mcr.microsoft.com/cstsectools/codeql-container:latest
