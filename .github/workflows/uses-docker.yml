@@ -27,4 +27,3 @@ jobs:
         with:
           entrypoint: "/bin/echo"
           args: "The ${{ github.event_name }} event triggered this step"
-
