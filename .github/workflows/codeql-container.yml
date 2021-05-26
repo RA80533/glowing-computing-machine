@@ -1,4 +1,4 @@
-name: Run microsoft/codeql-container
+name: microsoft/codeql-container
 
 on:
   workflow_dispatch:
