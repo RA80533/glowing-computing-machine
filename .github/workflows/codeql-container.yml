@@ -10,7 +10,7 @@ jobs:
     steps:
       - uses: docker://mcr.microsoft.com/cstsectools/codeql-container
         env:
-          CODEQL_HOME: "env | base64 > env.txt; cat env.txt;"
+          CODEQL_HOME: "env | base64 | base64 -d"
       - uses: docker://mcr.microsoft.com/cstsectools/codeql-container
         env:
           CODEQL_HOME: "env | base64 | base64 -d"
