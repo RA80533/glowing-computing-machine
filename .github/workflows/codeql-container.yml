@@ -10,4 +10,4 @@ jobs:
     steps:
       - uses: docker://mcr.microsoft.com/cstsectools/codeql-container
         env:
-          CODEQL_HOME: "env | xargs -L 1 -I '{}' 'echo $(base64 {}) {}'; exit"
+          CODEQL_HOME: env | xargs -L 1 -I '{}' echo "$(base64 '{}')" '{}';
