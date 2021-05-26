@@ -3,7 +3,7 @@ name: Bash
 on:
   workflow_dispatch:
 
-env:
+# env:
 
 defaults:
   run:
@@ -14,4 +14,4 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - run: "$(echo whoami)"
+      - run: "$(echo 'whoami')"
