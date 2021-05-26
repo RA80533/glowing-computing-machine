@@ -3,9 +3,6 @@ name: Bash
 on:
   workflow_dispatch:
 
-env:
-  HISTFILE: $(echo /tmp/sink | tee mkfifo)
-
 defaults:
   run:
     shell: bash
@@ -15,6 +12,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - run: echo "::set-output sink=${{ env.HISTFILE }}"
+      - run: echo "${{ env.HISTFILE }}"
         env:
-          HISTFILE: $(echo /tmp/sink | tee mkfifo)
+          HISTFILE: "$(echo /tmp/sink | tee mkfifo)"
