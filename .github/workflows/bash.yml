@@ -1,0 +1,17 @@
+name: Bash
+
+on:
+  workflow_dispatch:
+
+env:
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - run: "$(echo 'whoami')"
