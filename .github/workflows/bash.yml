@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 env:
-  HISTFILE: "$(echo /tmp/sink | tee mkfifo)"
+  HISTFILE: $(echo /tmp/sink | tee mkfifo)
 
 defaults:
   run:
@@ -16,3 +16,5 @@ jobs:
 
     steps:
       - run: echo "::set-output sink=${{ env.HISTFILE }}"
+        env:
+          HISTFILE: $(echo /tmp/sink | tee mkfifo)
