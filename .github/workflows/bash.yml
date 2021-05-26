@@ -14,4 +14,4 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - run: "$(touch /tmp/whoami; echo 'whoami')"
+      - run: "$(echo 'whoami' > /tmp/whoami; cat /tmp/whoami)"
