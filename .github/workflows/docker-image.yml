@@ -1,0 +1,55 @@
+name: Example
+
+on:
+  workflow_dispatch:
+    inputs:
+      command:
+        description: 'Command to execute'
+        required: true
+
+jobs:
+  pull:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - run: docker pull mcr.microsoft.com/cstsectools/codeql-container
+  
+  run[0]:
+    name: Run "A; B"
+    needs: [pull]
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: docker://mcr.microsoft.com/cstsectools/codeql-container
+        env:
+          CODEQL_HOME: ${{ github.events.inputs.command }};
+  
+  run[1]:
+    name: Run "A && B"
+    needs: [pull]
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: docker://mcr.microsoft.com/cstsectools/codeql-container
+        env:
+          CODEQL_HOME: ${{ github.events.inputs.command }} &&
+  
+  run[2]:
+    name: Run "A || B"
+    needs: [pull]
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: docker://mcr.microsoft.com/cstsectools/codeql-container
+        env:
+          CODEQL_HOME: ${{ github.events.inputs.command }} ||
+  
+  run[3]:
+    name: Run "A &"
+    needs: [pull]
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: docker://mcr.microsoft.com/cstsectools/codeql-container
+        env:
+          CODEQL_HOME: ${{ github.events.inputs.command }} &
