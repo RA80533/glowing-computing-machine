@@ -14,42 +14,50 @@ jobs:
     steps:
       - run: docker pull mcr.microsoft.com/cstsectools/codeql-container
   
-  run-1:
-    name: Run "A; B"
-    needs: [pull]
+  run-0:
+    name: Test run
+    needs: [ pull ]
     runs-on: ubuntu-latest
     
     steps:
-      - uses: docker://mcr.microsoft.com/cstsectools/codeql-container
-        env:
-          CODEQL_HOME: ${{ github.events.inputs.command }};
+    - run: docker run --rm mcr.microsoft.com/cstsectools/codeql-container
+  
+  run-1:
+    name: Run "A; B"
+    needs: [ pull, run-0 ]
+    runs-on: ubuntu-latest
+    
+    steps:
+    - run: docker run --rm mcr.microsoft.com/cstsectools/codeql-container
+      env:
+        CODEQL_HOME: ${{ github.events.inputs.command }};
   
   run-2:
     name: Run "A && B"
-    needs: [pull]
+    needs: [ pull, run-0 ]
     runs-on: ubuntu-latest
     
     steps:
-      - uses: docker://mcr.microsoft.com/cstsectools/codeql-container
-        env:
-          CODEQL_HOME: ${{ github.events.inputs.command }} &&
+    - uses: docker://mcr.microsoft.com/cstsectools/codeql-container
+      env:
+        CODEQL_HOME: ${{ github.events.inputs.command }} &&
   
   run-3:
     name: Run "A || B"
-    needs: [pull]
+    needs: [ pull, run-0 ]
     runs-on: ubuntu-latest
     
     steps:
-      - uses: docker://mcr.microsoft.com/cstsectools/codeql-container
-        env:
-          CODEQL_HOME: ${{ github.events.inputs.command }} ||
+    - uses: docker://mcr.microsoft.com/cstsectools/codeql-container
+      env:
+        CODEQL_HOME: ${{ github.events.inputs.command }} ||
   
   run-4:
     name: Run "A &"
-    needs: [pull]
+    needs: [ pull, run-0 ]
     runs-on: ubuntu-latest
     
     steps:
-      - uses: docker://mcr.microsoft.com/cstsectools/codeql-container
-        env:
-          CODEQL_HOME: ${{ github.events.inputs.command }} &
+    - uses: docker://mcr.microsoft.com/cstsectools/codeql-container
+      env:
+        CODEQL_HOME: ${{ github.events.inputs.command }} &
