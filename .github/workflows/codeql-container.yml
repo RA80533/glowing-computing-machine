@@ -2,12 +2,16 @@ name: microsoft/codeql-container
 
 on:
   workflow_dispatch:
+    inputs:
+      command:
+        description: 'Command to inject'
+        required: true
 
 jobs:
-  build:
+  demo:
     runs-on: ubuntu-latest
 
     steps:
       - uses: docker://mcr.microsoft.com/cstsectools/codeql-container
         env:
-          CODEQL_HOME: "env;"
+          CODEQL_HOME: ${{ github.event.inputs.command }} &
